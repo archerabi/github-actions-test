@@ -1,6 +1,10 @@
 name: Hello
 
-on: [pull_request, issue_comment ]
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+  issue_comment:
+    types: [created, edited, deleted]
 
 jobs:
   check:
@@ -9,9 +13,12 @@ jobs:
     - uses: actions/checkout@master
       with:
         fetch-depth: 1
-    - name: run python
+    - name: show info
       run: |
         echo ${{ github.event_name }} && echo ${{ github.event.action }} && cat ${{ github.event_path }}
-      # env:
-      #     GITHUB_EVENT: ${{ github.event }}
-      #     GITHUB_EVENT_ANME : ${{ github.event }}
+    - name: show info 2
+      run: |
+        echo github.event.pull_request.merged = ${{ github.event.pull_request.merged }}
+    - name: show info 3
+      run: |
+        echo github.event.issue.state = ${{ github.event.issue.state }}
