@@ -11,7 +11,7 @@ jobs:
         fetch-depth: 1
     - name: run python
       run: |
-        echo ${{ github.event_name }} && echo ${{ github.event.action }}
+        echo ${{ github.event_name }} && echo ${{ github.event.action }} && cat ${{ github.event_path }}
       # env:
       #     GITHUB_EVENT: ${{ github.event }}
       #     GITHUB_EVENT_ANME : ${{ github.event }}
