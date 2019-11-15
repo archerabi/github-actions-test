@@ -1,14 +1,9 @@
 name: Hello
 
-on:
-  pull_request:
-    types: [opened, edited, reopened, synchronize]
-  issue_comment:
-    types: [created, edited, deleted]
+on: issue_comment
 
 jobs:
   check:
-    if: (github.event.pull_request != null && github.event.pull_request.merged == false) || (github.event.issue != null && github.event.issue.state != 'closed')
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
